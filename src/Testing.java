@@ -11,6 +11,11 @@ public class Testing extends Application {
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
 
+        window.setOnCloseRequest(e-> {
+            e.consume();
+            closeProgram();
+        });
+
         Button button = new Button();
         button.setText("Click Me!");
         button.setOnAction(e -> {
@@ -28,6 +33,12 @@ public class Testing extends Application {
         window.setScene(scene1);
         window.show();
 
+    }
+
+    public void closeProgram(){
+        boolean answer = ConfirmBox.display("Close Program", "Are you sure you want to exit?");
+        if (answer)
+            window.close();
     }
 
     public static void main(String[] args){ launch(args); }
